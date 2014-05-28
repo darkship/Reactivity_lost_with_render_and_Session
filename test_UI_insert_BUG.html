@@ -1,0 +1,34 @@
+<head>
+  <title>test_UI_insert_BUG</title>
+</head>
+<body>
+    {{>groups}}
+    {{>members_container}}
+</body>
+<template name="groups">
+<ul>
+    {{#each groups}}
+        <li><button>{{name}}</button></li>
+    {{/each}}
+</ul>
+</template>
+<template name="members_container">
+    <div id="members_container">
+
+    </div>
+</template>
+
+<template name="memberlist">
+    {{#with group}}
+    <div id="groupe-{{_id}}">
+        {{#if showGroupe}}
+            {{name}}
+        {{/if}}
+        <ul>
+        {{#each members}}
+            <li>{{name}}</li>
+        {{/each}}
+        </ul>
+    </div>
+    {{/with}}
+</template>

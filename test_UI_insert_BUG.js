@@ -1,5 +1,5 @@
 if (Meteor.isClient) {
-    Session.set("selectedGroups",[])
+
     groups = new Meteor.Collection(null)
     members = new Meteor.Collection(null)
     Meteor.startup(function () {
@@ -16,6 +16,8 @@ if (Meteor.isClient) {
         })
     });
 
+
+    Session.set("selectedGroups",[])
     Template.groups.helpers({
         groups: function () {
             return groups.find()
@@ -56,9 +58,10 @@ if (Meteor.isClient) {
     Deps.autorun(function(){
 
         var new_groups_ids=Session.get("selectedGroups")
-        console.log(new_groups_ids)
         var added_projects = _.difference(new_groups_ids, selectedGroups)
         var removed_projects = _.difference(selectedGroups, new_groups_ids)
+
+
         selectedGroups=new_groups_ids
 
         added_projects.forEach(function(id){
